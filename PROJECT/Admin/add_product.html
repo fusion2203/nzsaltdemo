@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <!-- Page Title -->
+  <title>Dashmin - Multipurpose Bootstrap Dashboard Template</title>
+
+  <!-- Meta Data -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/Images/F_1.png">
+
+  <!-- Web Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- ======= BEGIN GLOBAL MANDATORY STYLES ======= -->
+  <link type="text/css" rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/fonts/icofont/icofont.min.css">
+  <link type="text/css" rel="stylesheet" href="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css">
+  <!-- ======= END BEGIN GLOBAL MANDATORY STYLES ======= -->
+
+  <!-- ======= BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
+  <link type="text/css" rel="stylesheet" href="assets/plugins/apex/apexcharts.css">
+  <!-- ======= END BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
+
+  <!-- ======= MAIN STYLES ======= -->
+  <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+  <!-- ======= END MAIN STYLES ======= -->
+
+</head>
+
+<body>
+
+  <!-- Offcanval Overlay -->
+  <div class="offcanvas-overlay"></div>
+  <!-- Offcanval Overlay -->
+
+  <!-- Wrapper -->
+  <div class="wrapper">
+
+    <!-- Header -->
+    <header class="header white-bg fixed-top d-flex align-content-center flex-wrap">
+      <!-- Logo -->
+      <div class="logo">
+         <div class="default-logo"></div>
+         <div class="mobile-logo"></div>
+      </div>
+      <!-- End Logo -->
+
+      <!-- Main Header -->
+      <div class="main-header">
+         <div class="container-fluid">
+            <div class="row justify-content-between">
+               <div class="col-3 col-lg-1 col-xl-4">
+                  <!-- Header Left -->
+                  <div class="main-header-left h-100 d-flex align-items-center">
+                     <!-- Main Header Menu -->
+                     <div class="main-header-menu d-block d-lg-none">
+                        <div class="header-toogle-menu">
+                           <!-- <i class="icofont-navigation-menu"></i> -->
+                           <img src="assets/img/menu.png" alt="">
+                        </div>
+                     </div>
+                     <!-- End Main Header Menu -->
+                  </div>
+                  <!-- End Header Left -->
+               </div>
+               <div class="col-9 col-lg-11 col-xl-8">
+                  <!-- Header Right -->
+                  <div class="main-header-right d-flex justify-content-end">
+                     
+                  </div>
+                  <!-- End Header Right -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Main Header -->
+   </header>
+    <!-- End Header -->
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Sidebar -->
+      <nav class="sidebar" data-trigger="scrollbar">
+
+        <!-- Sidebar Body -->
+        <div class="sidebar-body">
+          <!-- Nav -->
+          <ul class="nav">
+            <li class="nav-category">
+              <a href="add_company.html">
+                <span class="link-title">Add Company</span>
+              </a>
+            </li>
+            <li class="nav-category active">
+              <a href="add_product.html">
+                <span class="link-title">Add Product</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="edit_product.html">
+                <span class="link-title">Edit Product</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="login_approval.html">
+                <span class="link-title">Login Approval</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="approved_login.html">
+                <span class="link-title">Approved Login</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="denied_login.html">
+                <span class="link-title">Denied Login</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="order_details.html">
+                <span class="link-title">Order Details</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="stock.html">
+                <span class="link-title">Stock</span>
+              </a>
+            </li>
+            <li class="nav-category">
+              <a href="placed_order.html">
+                <span class="link-title">Place Order</span>
+              </a>
+            </li>
+            <li class="nav-category" onclick="return confirm('Do you want to logout?')">
+              <a href="/admin/logout">
+                <span class="link-title">Log Out</span>
+              </a>
+            </li>
+
+          </ul>
+          <!-- End Nav -->
+        </div>
+        <!-- End Sidebar Body -->
+      </nav>
+      <!-- End Sidebar -->
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="container-fluid">
+          <div class="form-element py-30 vertical-form mb-30">
+            <h1 class="mb-30 page-title">Add Product</h1>
+            <form id = "product_form" onsubmit="addProduct(event)" method="POST" >
+              <div class="form-group">
+                <label class="mb-2 black">Product Name</label>
+                <input required name="product_name" id = "product_name" type="text" class="theme-input-style" placeholder="Type Product Name">
+              </div>
+              <br>
+              <div class="form-group">
+                <label class="mb-2 black">Product Price</label>
+                <input required name="product_price" id="product_price" type="number" class="theme-input-style" placeholder="Type Product Price">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="Product_Category" class="mb-2 black">Main Catagory</label>
+                <div class="custom-select style--two">
+                  <select name="product_main_cat" class="theme-input-style" id="Product_Category" onchange="onCategoryChange()">
+                    <option value="Device">Device</option>
+                    <option value="Liquides">Liquides</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Disposables">Disposables</option>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="Product_SubCategory" class="mb-2 black">Sub Catagory</label>
+                <div class="custom-select style--two">
+                  <select name="product_sub_cat" class="theme-input-style" id="Product_SubCategory">
+                    <option value="Tool Kits">Tool Kits</option>
+                    <option value="Pod Kits">Pod Kits</option>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="select_company" class="mb-2 black">Product Company</label>
+                <div class="custom-select style--two">
+                  <select name="company_name" class="theme-input-style" id="select_company">
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="form-group ">    
+                <label for="product-type-value" class="mb-2 black">Product Type</label>
+                <div class="custom-select style--two">
+                  <select name= "product_type"class="theme-input-style" id="product-type" onchange="onTypeChange()">
+                    <option value="None">None</option>
+                    <option value="Colour">Colour</option>
+                    <option value="Strength">Strength</option>
+                    <option value="Ohm">Ohm</option>
+                  </select>
+                </div>  
+              </div> 
+              <br>
+              <div class="form-group ">    
+                <label class="mb-2 black">Product Total Type</label>
+                <input disabled required name="product_total_type" id="product-total-type-value" type="number" class="theme-input-style" placeholder="Type Total Type" onfocusout="addTotalTypes()" >
+              </div>    
+              <br>
+              <div class="form-group">
+                <label for="stock" class="mb-2 black">Stock</label>
+                <input required name="product_qty" type="number" class="theme-input-style" id="stock" value="0">
+              </div>
+              <br>
+              <div class="form-group">                
+                <label for="textarea1" class="mb-2 black">Product Description</label>
+                <textarea required name="product_description" id="textarea1" class="theme-input-style" placeholder="Type Product Description Here... "></textarea>
+              </div>
+              <br>
+              <div class="form-group">
+                <label class="mb-2 black">Product Images</label>
+                <div class="col-9 col-lg-8" style="padding-left:0;">
+                  <div class="attach-file style--custom">
+                    <div class="upload-button">
+                      Choose files
+                      <input name="new_product_images" required class="file-input file-input2" type="file" multiple>
+                    </div>
+                  </div>
+                  <label id="file_name" class="file_upload ml-2">No file added</label>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <span class="mb-2">*image size should be 600px X 600px and 96dpi</span>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-12 text-left">
+                  <button type="submit"  class="btn long">Submit</button>
+                </div>
+              </div>
+            </form>
+            <!-- End Form -->
+          </div>
+        </div>
+      </div>
+      <!-- End Main Content -->
+    </div>
+    <!-- End Main Wrapper -->
+
+
+  </div>
+  <!-- End wrapper -->
+
+  <!-- ======= Individual Script====== -->
+
+  <script src="assets/individual_js/add_product.js"></script>
+
+  <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
+
+  <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+  <script src="assets/plugins/apex/apexcharts.min.js"></script>
+  <script src="assets/plugins/apex/custom-apexcharts.js"></script>
+  <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
+  <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+    <script src="assets/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../../../assets/plugins/bootstrap-touchspin/custom-touchspin.js"></script>
+  <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
+  
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<%- include("header.ejs") %>
+
+  <div id="wrapper" class="wrapper clearfix">
+    <!-- header code -->
+    <%- include("menubar.ejs") %>
+
+      <!-- page title -->
+      <section id="page-title" class="page-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <h1>
+                <%= page %>
+              </h1>
+            </div>
+            <!-- .col-md-6 end -->
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <ol class="breadcrumb text-right">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <% if(main !=page) { %>
+                  <li>
+                    <a href="/device">
+                      <%= main %>
+                    </a>
+                  </li>
+                  <% } %>
+
+                    <li class="active">
+                      <%= page %>
+                    </li>
+              </ol>
+            </div>
+            <!-- .col-md-6 end -->
+          </div>
+          <!-- .row end -->
+        </div>
+        <!-- .container end -->
+      </section>
+
+      <!-- products list -->
+      <section id="shopgrid" class="shop shop-grid">
+        <div class="container">
+          <!-- .row end -->
+          <div class="row products-container">
+            <% if(details.length> 0){
+              for(var i = 0; i < details.length; i++) { %>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 product"'>
+          <div class="product-img">
+            <img src="/<%= details[i].img %>" alt="Product" />
+            <div class="product-hover">
+              <div class="product-action">
+                <% if(total_qty[i].total==0){ %> 
+                  <h2 style="text-align:center ;color:#f1913b">Currently Unavailable</h2>
+                <% } else{ %>
+                  <a class="btn btn-primary" href="/productDetails?main=<%= details[0].product_main_cat %>&page=<%= details[0].product_sub_cat %>&product_id=<%= details[i].product_id %>">Item Details</a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <div class="product-bio">
+            <div class="prodcut-cat">
+              <a href="#"><%= details[i].company_name %></a>
+            </div>
+            <div class="prodcut-title">
+              <h3>
+                <a href="#"><%= details[i].product_name %></a>
+              </h3>
+            </div>
+            <div class="product-price">
+              <span class="symbole">₹</span>
+              <span><%= details[i].product_price %></span>
+            </div>
+          </div>
+        </div>
+
+        <% } } else{ %>
+        <%- include("404.ejs") %>
+        <% } %>
+      </div>
+      <!-- .row end -->
+    </div>
+    <!-- .container end -->
+  </section>
+
+  <%- include("footer.ejs") %>
+</div>
+
+<%- include("scripts.ejs") %>

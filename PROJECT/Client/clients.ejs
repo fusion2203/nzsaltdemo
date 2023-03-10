@@ -1,0 +1,18 @@
+<section id="clients" class="clients bg-gray">
+  <div class="client-container">
+      <div class="row clients-bg client-carousel">
+        <% companies.forEach(function(company){ %>
+        <div class="client-col col-xs-12 col-sm-12 col-md-12">
+          <!-- Client #1 -->
+          <div class="client">
+            <a href="/allProductsOfCompany?company_name=<%=company.company_name%>"><img src="/<%= company.company_logo_path %>" ></a>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <!-- .row end -->
+  </div>
+
+      <!-- .container end -->
+  <!-- .container end -->
+</section>

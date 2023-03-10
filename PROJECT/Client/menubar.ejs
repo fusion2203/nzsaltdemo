@@ -1,0 +1,133 @@
+<header id="navbar-spy" class="header header-1">
+    <nav id="primary-menu" class="navbar navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#header-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="logo" href="/">
+            <img src="/assets2/custome_images/white.png" style="width: 156px;height: 44px;" alt="Autoshop" />
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div
+          class="collapse navbar-collapse pull-right"
+          id="header-navbar-collapse-1"
+        >
+          <ul class="nav navbar-nav navbar-left">
+            <li class="<%= main === 'Home' && 'active' %>">
+              <a href="/home">Home</a>
+            </li>
+            <!-- li end -->
+            <li class="has-dropdown <%= main === 'Device' && 'active' %>">
+              <a href="/allporducts?main=Device&page=Device" data-toggle="dropdown" class="dropdown-toggle"
+                >Device</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/allporducts?main=Device&page=Tool Kits">Tool Kits</a>
+                </li>
+                <li>
+                  <a href="/allporducts?main=Device&page=Pod Kits">Pod Kits</a>
+                </li>
+              </ul>
+            </li>
+            <!-- li end -->
+
+            <li class="has-dropdown <%= main === 'Liquides' && 'active' %>">
+              <a href="/allporducts?main=Liquides&page=Liquides" data-toggle="dropdown" class="dropdown-toggle">Liquides</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/allporducts?main=Liquides&page=Salt Base">Salt Base</a>
+                </li>
+                <li>
+                  <a href="/allporducts?main=Liquides&page=Free Base">Free Base</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="has-dropdown <%= main === 'Accessories' && 'active' %>">
+              <a href="/allporducts?main=Accessories&page=Accessories" data-toggle="dropdown" class="dropdown-toggle"
+                >Accessories</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/allporducts?main=Accessories&page=Coils">Coils</a>
+                </li>
+                <li>
+                  <a href="/allporducts?main=Accessories&page=Pods">Pods</a>
+                </li>
+                <li>
+                  <a href="/allporducts?main=Accessories&page=Batteries">Batteries</a>
+                </li>
+                <li>
+                  <a href="/allporducts?main=Accessories&page=Tanks | Mods">Tanks | Mods</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="<%= main === 'Disposables' && 'active' %>">
+              <a href="/allporducts?main=Disposables&page=Disposables">Disposables</a>
+            </li>
+
+            <li onclick="return confirm('Do you want to logout ?')">
+              <a href="/signout">Sign Out</a>
+            </li>
+          </ul>
+
+          <!-- Mod-->
+          <div class="module module-search pull-left">
+            <div class="search-icon">
+              <i class="fa fa-search"></i>
+              <span class="title">search</span>
+            </div>
+            <div class="search-box">
+              <form class="search-form" action="/search" method="post">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="search"
+                    placeholder="Type Your Search Words"
+                  />
+                  <span class="input-group-btn">
+                    <button class="btn" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+                <!-- /input-group -->
+              </form>
+            </div>
+          </div>
+          <!-- .module-search-->
+          <!-- .module-cart -->
+          <div class="module module-cart pull-left">
+            <a href="/cart">
+            <div class="cart-icon">
+              <i class="fa fa-shopping-cart"></i>
+              <span class="title">shop cart</span>
+            </div>
+            </a>
+          </div>
+          <!-- .module-cart end -->
+
+
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+ 

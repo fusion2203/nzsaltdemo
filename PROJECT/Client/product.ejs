@@ -1,0 +1,319 @@
+<%- include("header.ejs") %>
+
+  <div id="wrapper" class="wrapper clearfix">
+    <!-- header code -->
+    <%- include("menubar.ejs") %>
+
+      <!-- page title  -->
+      <section id="page-title" class="page-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <h1>
+                <%= details[0].product_name %>
+              </h1>
+            </div>
+            <!-- .col-md-6 end -->
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <ol class="breadcrumb text-right">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li class="active">shop</li>
+              </ol>
+            </div>
+            <!-- .col-md-6 end -->
+          </div>
+          <!-- .row end -->
+        </div>
+        <!-- .container end -->
+      </section>
+
+      <section id="shopgrid" class="shop shop-single">
+        <div class="container shop-content">
+          <!-- <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div id="alert" class="alert" style="display: none;">
+            <div class="alert-content" style="padding-left:0px ;">
+              <h4 style="text-align:center; font-size:15px">Item Was Successfully Added To Your Cart.</h4>
+            </div>
+          </div>
+        </div>
+      </div> -->
+          <!-- .row end -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5">
+              <div class="prodcut-images">
+                <div class="product-img-slider">
+                  <% if(images.length> 0){ images.forEach(function(image){ %>
+                    <img src="/<%= image.img %>" alt="product image" />
+                    <% }); } %>
+                </div>
+                <div class="product-img-nav">
+
+                  <% if(images.length> 0){ images.forEach(function(image){ %>
+                    <img src="/<%= image.img %>" alt="product image" style="width: 70px;height: 70px;" />
+                    <% }); } %>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-7">
+              <div class="product-title text-center-xs">
+                <h2>
+                  <%= details[0].product_name %>
+                </h2>
+              </div>
+              <!-- .product-title end -->
+              <div class="product-meta mb-30">
+                <div class="product-price pull-left pull-none-xs">
+                  <p style="font-size:20px ;">₹ <%= details[0].product_price %>
+                  </p>
+                </div>
+                <!-- .product-price end -->
+              </div>
+              <!-- .product-img end -->
+
+              <div class="product-desc text-center-xs" style="word-break: break-all;">
+                <p class="mb-0" style="color:black ;font-size: 15px;">
+                  <%= details[0].product_description %>
+                </p>
+              </div>
+              <!-- .product-desc end -->
+
+              <hr class="mt-30 mb-30" />
+              <div class="product-details text-center-xs">
+                <h5>Other Details :</h5>
+                <ul class="list-unstyled">
+                  <li>Product : <span>
+                      <%= details[0].product_name %>
+                    </span></li>
+                  <li>Brand : <span>
+                      <%= details[0].company_name %>
+                    </span></li>
+                  <li>Product ID : <span>
+                      <%= details[0].product_id %>
+                    </span></li>
+                  <li>
+                    Total Quantity :
+                    <% var type=[];var qty=[];var sum=0; if(varaiety.length> 0){
+                      varaiety.forEach(function(v){
+                      type.push(v.product_type_des);
+                      qty.push(v.product_qty);
+                      sum+=v.product_qty;
+                      });
+                      %>
+                      <span>
+                        <%= sum %>
+                      </span>
+                      <% } %>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- .product-details end -->
+              <hr class="mt-30 mb-30" />
+
+              <div class="product-action">
+                <% if(varaiety.length> 0){ %>
+                  <div class="product-sort mb-15-xs product-quantity">
+                    <% if(varaiety[0].product_type!='None' ){ %>
+                      <span class="qua">
+                        <%= varaiety[0].product_type %>:
+                      </span>
+                      <select id="type"
+                        onchange="typeChanged('<%= details[0].product_id %>',{total:'<%= sum %>',type:'<%= type %>',qty:'<%= qty %>'})">
+                        <% for(var i=0;i < varaiety.length;i++){ if(qty[i]!=0){ %>
+                          <option value="<%= varaiety[i].product_type_des %>">
+                            <%= varaiety[i].product_type_des %>
+                          </option>
+                          <% }} } } %>
+                      </select>
+                  </div>
+                  <div class="product-quantity pull-left pull-none-xs">
+                    <span class="qua">Quantity:</span>
+                    <span>
+                      <a onclick="deccrease()"><i class="fa fa-minus"></i></a>
+                      <input type="text" value="1" id="pro-qunt" readonly />
+                      <a onclick="increase('<%=sum %>')"><i class="fa fa-plus"></i></a>
+                    </span><br><br>
+                    <span>
+                      <a id="add" class="btn btn-primary"
+                        onclick="addToCart('<%= details[0].product_id %>','<%= details[0].img %>','<%= details[0].product_name %>','<%= details[0].product_price %>','<%= varaiety[0].product_type %>','<%= details[0].product_main_cat %>','<%= details[0].product_sub_cat %>')">add
+                        to cart</a>
+                    </span>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <!-- Alert Message -->
+              <div id="alert" class="alert" style="display: none;">
+                <div class="alert-content" style="padding-left:0px ;">
+                  <h4 id="alert_message" style="text-align:center; font-size:15px"></h4>
+                </div>
+              </div>
+              <!-- .aret end -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="widget-related-product">
+              <% if(others.length >0){ %>
+                <div class="widget-title">
+                  <h4>Related Products</h4>
+                </div>
+              <% } %>
+                <div class="widget-content">
+                  <div class="row products-container">
+                    <!-- Product #1 -->
+                    <% if(others.length> 0){ others.forEach(function(other){ %>
+
+                      <div class="col-xs-12 col-sm-6 col-md-3 product">
+                        <div class="product-img">
+                          <img src="<%= other.img %>" alt="Product" />
+                          <div class="product-hover">
+                            <div class="product-action">
+                              <!-- <a class="btn btn-primary" onclick="addtocart()">Add To Cart</a> -->
+                              <a class="btn btn-primary"
+                                href="/productDetails?main=<%= other.product_main_cat %>&page=<%= other.product_sub_cat %>&product_id=<%= other.product_id %>">Item
+                                Details</a>
+                            </div>
+                          </div>
+                          <!-- .product-overlay end -->
+                        </div>
+                        <!-- .product-img end -->
+                        <div class="product-bio">
+                          <div class="prodcut-cat">
+                            <a href="#">
+                              <%= other.company_name %>
+                            </a>
+                          </div>
+                          <!-- .product-cat end -->
+                          <div class="prodcut-title">
+                            <h3>
+                              <a href="#">
+                                <%= other.product_name %>
+                              </a>
+                            </h3>
+                          </div>
+                          <!-- .product-title end -->
+                          <div class="product-price">
+                            <span class="symbole">₹</span>
+                            <span>
+                              <%= other.product_price %>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <% }); } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .product-related end -->
+        </div>
+        <!-- .container end -->
+      </section>
+
+      <%- include("footer.ejs") %>
+  </div>
+  <script>
+    var stock = 0;
+    var flag = 0;
+    window.onload = () => {
+      typeChanged('<%= details[0].product_id %>', { total: '<%= sum %>', type: '<%= type %>', qty: '<%= qty %>' });
+    }
+    function typeChanged(str, d) {
+      var type = document.getElementById("type").value;
+      console.log(type, str);
+      var t = (d["type"]).split(",");
+      var q = (d["qty"]).split(",");
+      var index = t.indexOf(type);
+      var cur_qty = q[index];
+      stock = cur_qty;
+      flag = 1;
+      console.log(cur_qty);
+    }
+    function deccrease() {
+      const qty = document.getElementById("pro-qunt").value;
+      if (qty > 1) {
+        document.getElementById("pro-qunt").defaultValue = (qty - 1).toString();
+      }
+    }
+    function increase(total) {
+      const qty = document.getElementById("pro-qunt").value;
+      var q = parseInt(qty);
+      var t = parseInt(total);
+      console.log(stock, q, t);
+      if (stock == 0 && flag == 0 && q < t) {
+        document.getElementById("pro-qunt").defaultValue = (q + 1).toString();
+      }
+      else if (q < stock) {
+        document.getElementById("pro-qunt").defaultValue = (q + 1).toString();
+      }
+    }
+    function addToCart(id, img, name, price, type,main_cat,sub_cat) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let sub_type;
+      console.log(type);
+      if (type === 'None') {
+        sub_type = "None";
+      }
+      else {
+        sub_type = document.getElementById("type").value;
+      }
+      const qty = document.getElementById("pro-qunt").value;
+      const total = parseInt(price) * parseInt(qty);
+      let new_item = {
+        "id": parseInt(id),
+        "name": name,
+        "price": parseInt(price),
+        "type": type,
+        "sub_type": sub_type,
+        "qty": parseInt(qty),
+        "image": img,
+        "total": total,
+        "main_cat":main_cat,
+        "sub_cat":sub_cat
+      }
+      let flag = 0;
+      cart.forEach(element => {
+        if (element.id == new_item.id && element.sub_type == new_item.sub_type) {
+          flag = 1;
+        }
+      });
+      if (flag == 0) {
+        cart.push(new_item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        setTimeout(() => {
+          const alert = document.getElementById('alert');
+          document.getElementById("alert_message").innerHTML = "Item Was Successfully Added To Your Cart."
+          alert.style.display = 'block';
+        }, 1000);
+        setTimeout(() => {
+          const alert = document.getElementById('alert');
+          alert.style.display = 'none';
+        }, 4000);
+      }
+      else {
+        setTimeout(() => {
+          const alert = document.getElementById('alert');
+          document.getElementById("alert_message").innerHTML = ("Item Already Exists In Your Cart.")
+
+          alert.style.display = 'block';
+        }, 1000);
+        setTimeout(() => {
+          const alert = document.getElementById('alert');
+          alert.style.display = 'none';
+        }, 4000);
+      }
+    }
+  </script>
+
+  <%- include("scripts.ejs") %>
